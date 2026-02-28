@@ -116,19 +116,20 @@
         border-bottom: 1px solid var(--card-border);
       }
 
-      /* Hero Section */
+      /* Hero / About Me Section */
       header {
         min-height: 80vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
         position: relative;
+        padding: 80px 0 60px;
       }
 
       .hero-title {
         font-size: 4rem;
         font-weight: 800;
-        margin-bottom: 10px;
+        margin-bottom: 6px;
         letter-spacing: -1px;
         background: linear-gradient(to right, #fff, var(--accent));
         -webkit-background-clip: text;
@@ -139,6 +140,86 @@
         font-size: 1.5rem;
         color: var(--text-muted);
         margin-bottom: 30px;
+      }
+
+      /* About Me: two-column split */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        margin-top: 20px;
+        align-items: start;
+      }
+
+      .about-text p {
+        color: var(--text-muted);
+        font-size: 1rem;
+        margin-bottom: 16px;
+        margin-top: 0;
+      }
+
+      .about-text h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #fff;
+        margin: 24px 0 12px;
+      }
+
+      /* Proficiency card */
+      .proficiency-card {
+        background: var(--card-bg);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--card-border);
+        border-radius: 16px;
+        padding: 28px 30px;
+      }
+
+      .proficiency-card h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin: 0 0 22px;
+        color: #fff;
+      }
+
+      .skill-bar-item {
+        margin-bottom: 18px;
+      }
+
+      .skill-bar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 6px;
+        font-size: 0.9rem;
+        color: var(--text-main);
+      }
+
+      .skill-bar-header span:last-child {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+      }
+
+      .skill-bar-track {
+        height: 6px;
+        background: rgba(255, 255, 255, 0.07);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .skill-bar-fill {
+        height: 100%;
+        border-radius: 10px;
+        background: linear-gradient(to right, #3b82f6, #22d3ee);
+        width: 0;
+        transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      @media (max-width: 768px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
       }
 
       /* Cards (Glassmorphism) */
@@ -200,6 +281,139 @@
         transform: translateY(-3px);
       }
 
+      /* ── Work Experience Timeline ───────────────────────── */
+      .timeline-heading {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .timeline-heading h2 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+      }
+
+      .timeline-heading h2 span {
+        color: var(--accent);
+      }
+
+      .timeline {
+        position: relative;
+        padding: 0;
+      }
+
+      /* Vertical center line */
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: var(--card-border);
+        transform: translateX(-50%);
+      }
+
+      .timeline-item {
+        display: flex;
+        justify-content: flex-end;
+        padding-right: calc(50% + 40px);
+        margin-bottom: 48px;
+        position: relative;
+      }
+
+      .timeline-item.right {
+        justify-content: flex-start;
+        padding-right: 0;
+        padding-left: calc(50% + 40px);
+      }
+
+      /* Center dot */
+      .timeline-item::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 24px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--accent);
+        transform: translateX(-50%);
+        box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
+      }
+
+      .timeline-card {
+        background: var(--card-bg);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--card-border);
+        border-radius: 16px;
+        padding: 24px 28px;
+        width: 100%;
+        transition:
+          transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+          box-shadow 0.4s ease;
+      }
+
+      .timeline-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+        border-color: rgba(56, 189, 248, 0.3);
+      }
+
+      .timeline-card h3 {
+        margin: 0 0 4px;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .timeline-company {
+        color: var(--accent);
+        font-size: 0.9rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 6px;
+      }
+
+      .timeline-date {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 14px;
+      }
+
+      .timeline-card ul {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        line-height: 1.7;
+      }
+
+      .timeline-card ul li {
+        margin-bottom: 6px;
+      }
+
+      @media (max-width: 768px) {
+        .timeline::before {
+          left: 16px;
+        }
+        .timeline-item,
+        .timeline-item.right {
+          padding-left: 46px;
+          padding-right: 0;
+          justify-content: flex-start;
+        }
+        .timeline-item::after {
+          left: 16px;
+        }
+      }
+
       /* Footer */
       footer {
         text-align: center;
@@ -229,22 +443,101 @@
   </head>
   <body>
     <div class="container">
-      <header class="floating">
+      <header>
         <h1 class="hero-title">Sudhakar B</h1>
+        <h2 class="hero-subtitle">Full Stack Developer &amp; AI Engineer</h2>
 
-        <h2 class="hero-subtitle">Full Stack Developer & AI Engineer</h2>
-        <p
-          style="max-width: 700px; font-size: 1.1rem; color: var(--text-muted)"
-        >
-          I am a Full Stack Developer with over 13 years of experience managing
-          the end-to-end execution of enterprise projects. I specialize in
-          building robust microservices, reusable UI components, and delivering
-          high-quality software. Currently, I am expanding my expertise by
-          pursuing an M.Tech in Artificial Intelligence at SRM University. My
-          ongoing research focuses on the intersection of modern web
-          technologies, AI advancements, and algorithmic trading within the
-          Indian stock market.
-        </p>
+        <div class="about-grid">
+          <!-- Left: Bio + Other Skills -->
+          <div class="about-text">
+            <p>
+              Full Stack Developer with
+              <strong>12+ years of IT experience</strong> in Java, J2EE, Spring,
+              Spring Boot, Docker, AWS, GCP, Hibernate, REST Web Services,
+              Angular, React, and React Native.
+            </p>
+            <p>
+              Experienced in end-to-end project execution — from requirements
+              and design through to production deployment. Skilled in building
+              reusable UI components, mentoring junior developers, and working
+              in Agile Scrum environments.
+            </p>
+            <p>
+              Currently pursuing an
+              <strong>M.Tech in Artificial Intelligence</strong> at SRM
+              University, Chennai (2024 – April 2026). Research focused on AI
+              advancements and algorithmic trading within the Indian stock
+              market.
+            </p>
+
+            <h3>Other Skills</h3>
+            <div class="skills-container">
+              <div class="skill-tag">Docker</div>
+              <div class="skill-tag">Git / SVN</div>
+              <div class="skill-tag">AWS ECS / GCP</div>
+              <div class="skill-tag">PostgreSQL / MySQL</div>
+              <div class="skill-tag">Jenkins / Maven</div>
+              <div class="skill-tag">REST APIs</div>
+              <div class="skill-tag">Microservices</div>
+              <div class="skill-tag">Agile / Scrum</div>
+              <div class="skill-tag">Linux</div>
+            </div>
+          </div>
+
+          <!-- Right: Technical Proficiency bars -->
+          <div class="proficiency-card">
+            <h3>Technical Proficiency</h3>
+
+            <div class="skill-bar-item">
+              <div class="skill-bar-header">
+                <span>Java / Spring Boot</span><span>95%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" data-width="95"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-header">
+                <span>Angular</span><span>90%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" data-width="90"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-header">
+                <span>React / React Native</span><span>88%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" data-width="88"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-header">
+                <span>AWS / GCP / Docker</span><span>82%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" data-width="82"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-header">
+                <span>Python</span><span>70%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" data-width="70"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-header">
+                <span>AI / ML</span><span>60%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" data-width="60"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </header>
 
       <section id="skills" class="floating-delayed">
@@ -272,54 +565,232 @@
         </div>
       </section>
 
+      <!-- WORK EXPERIENCE -->
+      <section id="experience">
+        <div class="timeline-heading">
+          <h2>Work <span>Experience</span></h2>
+        </div>
+
+        <div class="timeline">
+          <!-- 1. Climate ETC / Tech Lead -->
+          <div class="timeline-item">
+            <div class="timeline-card">
+              <h3>Tech Lead</h3>
+              <div class="timeline-company">
+                📌 Climate ETC Technology Services Pvt Ltd, Chennai
+              </div>
+              <div class="timeline-date">📅 April 2023 — Present</div>
+              <ul>
+                <li>
+                  Leading development of the Trane Technician Mobile App —
+                  simplifying HVAC installation, commissioning, and service.
+                </li>
+                <li>
+                  Developed and led React Native mobile app features; integrated
+                  BLE and RESTful APIs for device and cloud interaction.
+                </li>
+                <li>
+                  Managed web application modules and ensured cross-platform
+                  consistency.
+                </li>
+                <li>
+                  Implemented unit tests and conducted code reviews to ensure
+                  service reliability and code quality.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 2. Nagarro / Staff Engineer -->
+          <div class="timeline-item right">
+            <div class="timeline-card">
+              <h3>Staff Engineer</h3>
+              <div class="timeline-company">📌 Nagarro, Bangalore</div>
+              <div class="timeline-date">📅 November 2021 — March 2023</div>
+              <ul>
+                <li>
+                  Built the Quara Pay core loan processing system and admin
+                  portal for a leading Saudi Arabian loan provider.
+                </li>
+                <li>
+                  Engineered automated customer eligibility-check workflows and
+                  loan-tracking dashboards.
+                </li>
+                <li>
+                  Implemented controllers, services and DAO layers using Spring
+                  Boot, Microservices, and PostgreSQL.
+                </li>
+                <li>
+                  Involved in DB design, performance optimisation, and unit test
+                  case implementation.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 3. ASG Technologies / DV2 -->
+          <div class="timeline-item">
+            <div class="timeline-card">
+              <h3>Developer (DV2)</h3>
+              <div class="timeline-company">📌 ASG Technologies, Chennai</div>
+              <div class="timeline-date">📅 July 2019 — November 2021</div>
+              <ul>
+                <li>
+                  Built the Mobius Data Miner — a web tool to extract and
+                  archive semi-structured data (PDF, AFP, Xerox, PCL).
+                </li>
+                <li>
+                  Designed REST APIs and implemented code using Angular 10 and
+                  NGX-Charts for data visualisation.
+                </li>
+                <li>
+                  Implemented UI components, controllers, services and DAO
+                  layers; performed code reviews.
+                </li>
+                <li>Won the <strong>Best Team Player</strong> award (2020).</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 4. Wipro Technologies / Tech Lead -->
+          <div class="timeline-item right">
+            <div class="timeline-card">
+              <h3>Tech Lead</h3>
+              <div class="timeline-company">📌 Wipro Technologies, Chennai</div>
+              <div class="timeline-date">📅 February 2018 — June 2019</div>
+              <ul>
+                <li>
+                  Led development on the Mobius Data Miner project (Jan 2018 –
+                  Jul 2019 period).
+                </li>
+                <li>
+                  Involved in requirement analysis, REST API design, and
+                  full-stack implementation using Spring Boot and Angular.
+                </li>
+                <li>
+                  Participated in design reviews, high-level UI planning, and
+                  Agile (Scrum) sprints.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 5. RAVSoft / Senior Software Engineer -->
+          <div class="timeline-item">
+            <div class="timeline-card">
+              <h3>Senior Software Engineer</h3>
+              <div class="timeline-company">
+                📌 RAVSoft Solutions Pvt Ltd, Chennai
+              </div>
+              <div class="timeline-date">📅 January 2013 — January 2018</div>
+              <ul>
+                <li>
+                  Worked on MedAptus Assign — an intelligent, rules-based
+                  patient assignment system for healthcare hospitalists.
+                </li>
+                <li>
+                  Worked on Merge PACS — a standards-based medical image
+                  management platform (PACS) with multiple viewer components.
+                </li>
+                <li>
+                  Full-stack development using Java, Spring MVC, Hibernate, JSP,
+                  and Oracle/SQL Server databases.
+                </li>
+                <li>
+                  Achieved the <strong>E-Sprit Award</strong> from RAVSoft in
+                  2014.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
       <section id="projects">
         <h2>Featured Constellations</h2>
         <div class="grid">
-          <div class="card">
-            <h3>Hybrid Multi-Agent Decision System</h3>
-            <div class="card-meta">Academic & Research Focus</div>
-            <p>
-              Developing an advanced algorithmic trading system focused on the
-              National Stock Exchange (NSE). The project leverages AI models
-              combined with the Mark Minervini trading strategy to automate and
-              optimize stock market analysis.
-            </p>
-          </div>
-
+          <!-- Project 5 -->
           <div class="card">
             <h3>Trane Technician Mobile App</h3>
-
-            <div class="card-meta">Tech Lead</div>
-
+            <div class="card-meta">
+              Tech Lead · Climate ETC · Apr 2023 – Present
+            </div>
             <p>
-              Developed a mobile application simplifying HVAC system
-              installation and servicing. The app provides step-by-step
-              guidance, real-time alerts , and remote monitoring capabilities
-              for technicians.
+              Simplifies HVAC system installation, commissioning and service by
+              integrating with Link Systems, Zoning, and Relay Panels. Provides
+              step-by-step setup guidance, real-time alerts, and Dealer Remote
+              Configuration (DRC) for proactive homeowner support.
             </p>
           </div>
 
+          <!-- Project 4 -->
           <div class="card">
-            <h3>Quara Pay Core System</h3>
-
-            <div class="card-meta">Staff Engineer</div>
-
+            <h3>Quara Pay</h3>
+            <div class="card-meta">
+              Staff Engineer · Nagarro · Nov 2021 – Mar 2023
+            </div>
             <p>
-              Built the core loan processing system and admin portal for a
-              leading loan provider in the Saudi Arab region , handling complex
-              eligibility checks and customer tracking.
+              Leading loan provider platform for the Saudi Arabia region.
+              Customers apply for loans with automated eligibility checks; admin
+              portal tracks and manages loan status, customer
+              blocking/unblocking, and reporting.
             </p>
           </div>
 
+          <!-- Project 3 -->
           <div class="card">
             <h3>Mobius Data Miner</h3>
-
-            <div class="card-meta">Software Engineer</div>
-
+            <div class="card-meta">
+              DV2 / Tech Lead · ASG / Wipro · Jan 2018 – Nov 2021
+            </div>
             <p>
-              Engineered a web-based tool to extract and archive semi-structured
-              data (PDF, AFP, Text) , allowing users to create policies based on
-              extracted information.
+              Web-based tool to archive and process semi-structured data from
+              Text, AFP, PDF, Xerox, and PCL reports. Integrated into Mobius
+              View, allowing users to extract data from documents and create
+              extraction policies.
+            </p>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="card">
+            <h3>MedAptus Assign</h3>
+            <div class="card-meta">
+              Software Engineer · RAVSoft · Oct 2015 – Jan 2018
+            </div>
+            <p>
+              Intelligent, rules-based patient assignment system for healthcare
+              hospitalists. Automates daily patient-to-doctor distribution based
+              on highly configurable, sequential rule hierarchies to optimise
+              provider productivity.
+            </p>
+          </div>
+
+          <!-- Project 1 -->
+          <div class="card">
+            <h3>Merge PACS</h3>
+            <div class="card-meta">
+              Software Engineer · RAVSoft · Jan 2013 – Sep 2015
+            </div>
+            <p>
+              Standards-based, scalable medical image management platform for
+              intranet/internet. Supports full PACS functionality with multiple
+              viewers (Primary Viewer, QC Editor) and image distribution
+              capabilities.
+            </p>
+          </div>
+
+          <!-- Research -->
+          <div class="card">
+            <h3>Hybrid Multi-Agent Trading System</h3>
+            <div class="card-meta">
+              Academic Research · SRM University · 2024 – Present
+            </div>
+            <p>
+              AI-driven algorithmic trading system targeting the National Stock
+              Exchange (NSE). Combines multi-agent decision models with the Mark
+              Minervini momentum strategy to automate and optimise market
+              analysis.
             </p>
           </div>
         </div>
@@ -340,25 +811,29 @@
               "
             >
               <li style="margin-bottom: 15px">
-                🚀 <strong>M.Tech in Artificial Intelligence</strong> - SRM
-                University, Chennai (Expected April 2026).
+                🚀 <strong>M.Tech in Artificial Intelligence</strong> — SRM
+                University, Chennai (2024 – April 2026).
               </li>
-
               <li style="margin-bottom: 15px">
-                🎓 <strong>Bachelor of Engineering</strong> - Vinayaka Mission's
-                Kirupananda Variyar Engineering College (2011).
+                🎓 <strong>Bachelor of Engineering</strong> — Vinayaka Mission's
+                Kirupananda Variyar Engineering College, Salem (2011).
               </li>
-
               <li style="margin-bottom: 15px">
-                🏆 <strong>Nagarro Cheer Board Award</strong> (Feb 2023).
+                🏆 <strong>Nagarro Cheer Board Award</strong> — February 2023.
               </li>
-
               <li style="margin-bottom: 15px">
-                🏆 <strong>Best Team Player</strong> - ASG Technologies (2020).
+                🏆 <strong>Best Team Player Award</strong> — ASG Technologies
+                (2020).
               </li>
-
               <li style="margin-bottom: 15px">
-                📜 <strong>Oracle Certified Professional</strong> - Java SE 6
+                🏆 <strong>E-Sprit Award</strong> — RAVSoft Solutions (2014).
+              </li>
+              <li style="margin-bottom: 15px">
+                ☁️ <strong>Google Cloud Professional Certified</strong> — GCP
+                Professional Certification (Expired 2025).
+              </li>
+              <li style="margin-bottom: 15px">
+                📜 <strong>Oracle Certified Professional</strong> — Java SE 6
                 Programmer.
               </li>
             </ul>
@@ -368,7 +843,10 @@
 
       <footer>
         <div class="social-links">
-          <a href="mailto:Sudhakar.badugu@outlook.com">Email Me </a>
+          <a
+            href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#83;&#117;&#100;&#104;&#97;&#107;&#97;&#114;&#46;&#98;&#97;&#100;&#117;&#103;&#117;&#64;&#111;&#117;&#116;&#108;&#111;&#111;&#107;&#46;&#99;&#111;&#109;"
+            >Email Me</a
+          >
           <a href="https://sudhasoftjava.wordpress.com" target="_blank"
             >Blog
           </a>
@@ -379,14 +857,32 @@
             >GitHub</a
           >
           <a
-            href="https://linkedin.com/"
+            href="https://www.linkedin.com/in/sudhakar-badugu-7146911b/"
             target="_blank"
             rel="noopener noreferrer"
             >LinkedIn</a
           >
         </div>
-        <p>Designed with zero gravity. &copy; 2026 Sudhakar B.</p>
+        <p>© 2026 Sudhakar Badugu. All rights reserved.</p>
       </footer>
     </div>
+    <script>
+      // Animate skill bars when the about section is visible
+      const bars = document.querySelectorAll(".skill-bar-fill");
+      const barObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const target = entry.target;
+              target.style.width = target.dataset.width + "%";
+              barObserver.unobserve(target);
+            }
+          });
+        },
+        { threshold: 0.2 },
+      );
+
+      bars.forEach((bar) => barObserver.observe(bar));
+    </script>
   </body>
 </html>
