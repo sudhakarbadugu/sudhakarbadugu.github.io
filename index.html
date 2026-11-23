@@ -178,41 +178,31 @@
       .proficiency-card h3 {
         font-size: 1.1rem;
         font-weight: 600;
-        margin: 0 0 22px;
+        margin: 0 0 20px;
         color: #fff;
       }
 
-      .skill-bar-item {
-        margin-bottom: 18px;
+      .expertise-group + .expertise-group {
+        margin-top: 20px;
       }
 
-      .skill-bar-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 6px;
-        font-size: 0.9rem;
-        color: var(--text-main);
+      .expertise-group h4 {
+        margin: 0;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: var(--accent);
       }
 
-      .skill-bar-header span:last-child {
-        color: var(--text-muted);
+      .expertise-group .skills-container {
+        margin-top: 10px;
+        gap: 8px;
+      }
+
+      .expertise-group .skill-tag {
+        padding: 6px 12px;
         font-size: 0.85rem;
-      }
-
-      .skill-bar-track {
-        height: 6px;
-        background: rgba(255, 255, 255, 0.07);
-        border-radius: 10px;
-        overflow: hidden;
-      }
-
-      .skill-bar-fill {
-        height: 100%;
-        border-radius: 10px;
-        background: linear-gradient(to right, #3b82f6, #22d3ee);
-        width: 0;
-        transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
       @media (max-width: 768px) {
@@ -281,10 +271,10 @@
         transform: translateY(-3px);
       }
 
-      /* ── Work Experience Timeline ───────────────────────── */
+      /* ── Work Experience (LinkedIn-style, grouped by company) ── */
       .timeline-heading {
         text-align: center;
-        margin-bottom: 60px;
+        margin-bottom: 48px;
       }
 
       .timeline-heading h2 {
@@ -297,120 +287,195 @@
         color: var(--accent);
       }
 
-      .timeline {
-        position: relative;
-        padding: 0;
-      }
-
-      /* Vertical center line */
-      .timeline::before {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 0;
-        bottom: 0;
-        width: 2px;
-        background: var(--card-border);
-        transform: translateX(-50%);
-      }
-
-      .timeline-item {
+      .exp-list {
+        max-width: 820px;
+        margin: 0 auto;
         display: flex;
-        justify-content: flex-end;
-        padding-right: calc(50% + 40px);
-        margin-bottom: 48px;
-        position: relative;
+        flex-direction: column;
+        gap: 20px;
       }
 
-      .timeline-item.right {
-        justify-content: flex-start;
-        padding-right: 0;
-        padding-left: calc(50% + 40px);
-      }
-
-      /* Center dot */
-      .timeline-item::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 24px;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: var(--accent);
-        transform: translateX(-50%);
-        box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
-      }
-
-      .timeline-card {
+      .exp-company {
         background: var(--card-bg);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border: 1px solid var(--card-border);
         border-radius: 16px;
         padding: 24px 28px;
-        width: 100%;
         transition:
-          transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-          box-shadow 0.4s ease;
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
       }
 
-      .timeline-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+      .exp-company:hover {
         border-color: rgba(56, 189, 248, 0.3);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
       }
 
-      .timeline-card h3 {
-        margin: 0 0 4px;
+      .exp-header {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+      }
+
+      .exp-logo {
+        flex: 0 0 48px;
+        width: 48px;
+        height: 48px;
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+        color: #0a0e17;
+        background: linear-gradient(135deg, #38bdf8, #818cf8);
+      }
+
+      .exp-header h3 {
+        margin: 0;
         font-size: 1.15rem;
         font-weight: 700;
+        line-height: 1.35;
         color: #fff;
       }
 
-      .timeline-company {
-        color: var(--accent);
+      .exp-sub {
         font-size: 0.9rem;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        margin-bottom: 6px;
+        color: var(--text-main);
       }
 
-      .timeline-date {
-        font-size: 0.8rem;
+      .exp-meta {
+        font-size: 0.85rem;
         color: var(--text-muted);
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        margin-bottom: 14px;
       }
 
-      .timeline-card ul {
+      /* Roles inside a company */
+      .exp-roles {
+        list-style: none;
+        margin: 18px 0 0;
+        padding: 0 0 0 64px;
+      }
+
+      .exp-role {
+        position: relative;
+        padding-bottom: 22px;
+      }
+
+      .exp-role:last-child {
+        padding-bottom: 0;
+      }
+
+      /* Connector dot + line, only for companies with several roles */
+      .exp-company.multi .exp-role::before {
+        content: "";
+        position: absolute;
+        left: -40px;
+        top: 7px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
+      }
+
+      .exp-company.multi .exp-role:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        left: -36px;
+        top: 24px;
+        bottom: 2px;
+        width: 2px;
+        background: var(--card-border);
+      }
+
+      .exp-role h4 {
         margin: 0;
+        font-size: 1rem;
+        font-weight: 700;
+        color: #fff;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .exp-badge {
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        color: var(--accent);
+        border: 1px solid rgba(56, 189, 248, 0.4);
+        border-radius: 999px;
+        padding: 1px 8px;
+      }
+
+      .exp-role ul {
+        margin: 10px 0 0;
         padding-left: 18px;
         color: var(--text-muted);
         font-size: 0.9rem;
         line-height: 1.7;
       }
 
-      .timeline-card ul li {
-        margin-bottom: 6px;
+      .exp-role ul li {
+        margin-bottom: 4px;
+      }
+
+      .exp-role.collapsed ul li:nth-child(n + 4) {
+        display: none;
+      }
+
+      .exp-toggle {
+        margin-top: 6px;
+        background: none;
+        border: none;
+        padding: 0;
+        color: var(--accent);
+        font: inherit;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .exp-toggle:hover,
+      .exp-toggle:focus-visible {
+        text-decoration: underline;
+      }
+
+      .exp-skills {
+        margin-top: 10px;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+
+      .exp-skills strong {
+        color: var(--text-main);
+        font-weight: 600;
       }
 
       @media (max-width: 768px) {
-        .timeline::before {
-          left: 16px;
+        .exp-company {
+          padding: 20px;
         }
-        .timeline-item,
-        .timeline-item.right {
-          padding-left: 46px;
-          padding-right: 0;
-          justify-content: flex-start;
+        .exp-logo {
+          flex-basis: 40px;
+          width: 40px;
+          height: 40px;
+          font-size: 0.75rem;
         }
-        .timeline-item::after {
-          left: 16px;
+        .exp-roles {
+          padding-left: 28px;
+        }
+        .exp-company.multi .exp-role::before {
+          left: -26px;
+        }
+        .exp-company.multi .exp-role:not(:last-child)::after {
+          left: -22px;
+        }
+        .exp-company.single .exp-roles {
+          padding-left: 0;
         }
       }
 
@@ -445,106 +510,100 @@
     <div class="container">
       <header>
         <h1 class="hero-title">Sudhakar B</h1>
-        <h2 class="hero-subtitle">Full Stack Engineer | Applied AI &amp; MLOps</h2>
+        <h2 class="hero-subtitle">
+          Technical Manager | Applied AI &amp; Agentic Systems
+        </h2>
 
         <div class="about-grid">
           <!-- Left: Bio + Other Skills -->
           <div class="about-text">
             <p>
-              Software Engineer with
+              Technical Manager with
               <strong id="exp-years">13+ years of IT experience</strong>, now
-              focused on <strong>Applied AI and MLOps</strong>. Completed an
+              focused on applying <strong>AI/ML and agentic systems</strong>
+              to engineering and industrial problems. Completed an
               <strong>M.Tech in Artificial Intelligence</strong> from SRM
               University, Chennai (2024 – 2026). Research on multi-agent
               algorithmic trading published in the
               <a href="https://ieeexplore.ieee.org/document/11518584" target="_blank" rel="noopener noreferrer">IEEE AEEE Conference</a>.
             </p>
             <p>
-              Building production AI systems — currently shipping a
-              <strong>RAG chatbot</strong> using AWS Bedrock, LangChain,
-              and vector stores for contextual technician support. Strong
-              engineering foundation in Java, Spring Boot, microservices,
-              Docker, AWS, and full-stack web development.
+              Building production AI for industrial field service — a
+              <strong>RAG assistant</strong> on AWS Bedrock, LangChain, and
+              vector stores that gives HVAC technicians contextual answers
+              during installation, commissioning, and service. I take ideas
+              from research and prototype through to reliable, production-grade
+              software.
             </p>
             <p>
-              Experienced in end-to-end project execution — from requirements
-              and design through to production deployment. Skilled in building
-              reusable UI components, mentoring junior developers, and working
-              in Agile Scrum environments.
+              Strong engineering foundation in Python, Java, Spring Boot,
+              microservices, Docker, and AWS. Experienced in leading teams
+              end-to-end — from requirements and design through to production
+              deployment — mentoring engineers, and working in Agile Scrum
+              environments.
             </p>
 
             <h3>Other Skills</h3>
             <div class="skills-container">
-              <div class="skill-tag">Docker</div>
               <div class="skill-tag">Git / SVN</div>
-              <div class="skill-tag">AWS ECS / GCP</div>
               <div class="skill-tag">PostgreSQL / MySQL</div>
               <div class="skill-tag">Jenkins / Maven</div>
               <div class="skill-tag">REST APIs</div>
-              <div class="skill-tag">Microservices</div>
               <div class="skill-tag">Agile / Scrum</div>
               <div class="skill-tag">Linux</div>
             </div>
           </div>
 
-          <!-- Right: Technical Proficiency bars -->
+          <!-- Right: Core Expertise, grouped by area -->
           <div class="proficiency-card">
-            <h3>Technical Proficiency</h3>
+            <h3>Core Expertise</h3>
 
-            <div class="skill-bar-item">
-              <div class="skill-bar-header">
-                <span>Java / Spring Boot</span><span>95%</span>
-              </div>
-              <div class="skill-bar-track">
-                <div class="skill-bar-fill" data-width="95"></div>
-              </div>
-            </div>
-            <div class="skill-bar-item">
-              <div class="skill-bar-header">
-                <span>Angular</span><span>90%</span>
-              </div>
-              <div class="skill-bar-track">
-                <div class="skill-bar-fill" data-width="90"></div>
+            <div class="expertise-group">
+              <h4>AI / ML &amp; Agents</h4>
+              <div class="skills-container">
+                <div class="skill-tag">RAG</div>
+                <div class="skill-tag">LangChain</div>
+                <div class="skill-tag">Multi-Agent Systems</div>
+                <div class="skill-tag">Tool / Function Calling</div>
+                <div class="skill-tag">RAG / LLM Evaluation</div>
+                <div class="skill-tag">LLM APIs (OpenAI / Anthropic)</div>
+                <div class="skill-tag">Prompt Engineering</div>
+                <div class="skill-tag">Vector Stores (Pinecone / Chroma)</div>
               </div>
             </div>
-            <div class="skill-bar-item">
-              <div class="skill-bar-header">
-                <span>React / React Native</span><span>88%</span>
-              </div>
-              <div class="skill-bar-track">
-                <div class="skill-bar-fill" data-width="88"></div>
-              </div>
-            </div>
-            <div class="skill-bar-item">
-              <div class="skill-bar-header">
-                <span>AWS / GCP / Docker</span><span>82%</span>
-              </div>
-              <div class="skill-bar-track">
-                <div class="skill-bar-fill" data-width="82"></div>
+
+            <div class="expertise-group">
+              <h4>Data Science &amp; Modelling</h4>
+              <div class="skills-container">
+                <div class="skill-tag">Python</div>
+                <div class="skill-tag">PyTorch / TensorFlow</div>
+                <div class="skill-tag">Scikit-learn</div>
+                <div class="skill-tag">Pandas / NumPy</div>
+                <div class="skill-tag">Hugging Face</div>
+                <div class="skill-tag">Backtesting</div>
               </div>
             </div>
-            <div class="skill-bar-item">
-              <div class="skill-bar-header">
-                <span>Python / PyTorch / TensorFlow</span><span>78%</span>
-              </div>
-              <div class="skill-bar-track">
-                <div class="skill-bar-fill" data-width="78"></div>
-              </div>
-            </div>
-            <div class="skill-bar-item">
-              <div class="skill-bar-header">
-                <span>Pandas / NumPy / Scikit-learn</span><span>75%</span>
-              </div>
-              <div class="skill-bar-track">
-                <div class="skill-bar-fill" data-width="75"></div>
+
+            <div class="expertise-group">
+              <h4>Cloud &amp; Platform</h4>
+              <div class="skills-container">
+                <div class="skill-tag">AWS Bedrock</div>
+                <div class="skill-tag">GCP Vertex AI / Cloud Run</div>
+                <div class="skill-tag">AWS ECS</div>
+                <div class="skill-tag">FastAPI</div>
+                <div class="skill-tag">Docker</div>
               </div>
             </div>
-            <div class="skill-bar-item">
-              <div class="skill-bar-header">
-                <span>LLM APIs / LangChain</span><span>70%</span>
-              </div>
-              <div class="skill-bar-track">
-                <div class="skill-bar-fill" data-width="70"></div>
+
+            <div class="expertise-group">
+              <h4>Software Engineering</h4>
+              <div class="skills-container">
+                <div class="skill-tag">Java / Spring Boot</div>
+                <div class="skill-tag">Microservices</div>
+                <div class="skill-tag">GitHub Actions CI/CD</div>
+                <div class="skill-tag">pytest</div>
+                <div class="skill-tag">React / React Native</div>
+                <div class="skill-tag">Angular</div>
               </div>
             </div>
           </div>
@@ -554,185 +613,259 @@
       <section id="skills" class="floating-delayed">
         <h2>Technical Orbit</h2>
         <div class="skills-container">
-          <div class="skill-tag">Java</div>
-
           <div class="skill-tag">Python</div>
-
-          <div class="skill-tag">JavaScript / TypeScript</div>
-
-          <div class="skill-tag">Angular</div>
-
-          <div class="skill-tag">React / React Native</div>
-
-          <div class="skill-tag">Spring Boot</div>
-
-          <div class="skill-tag">PostgreSQL / MySQL</div>
-
-          <div class="skill-tag">AWS ECS / GCP</div>
-
-          <div class="skill-tag">Docker</div>
-
-          <div class="skill-tag">PyTorch / TensorFlow</div>
-
-          <div class="skill-tag">Scikit-learn</div>
-
-          <div class="skill-tag">Pandas / NumPy</div>
-
           <div class="skill-tag">LangChain</div>
-
+          <div class="skill-tag">AWS Bedrock</div>
           <div class="skill-tag">OpenAI / Anthropic API</div>
-
           <div class="skill-tag">OpenRouter</div>
-
           <div class="skill-tag">Pinecone / Chroma</div>
+          <div class="skill-tag">Hugging Face</div>
+          <div class="skill-tag">PyTorch / TensorFlow</div>
+          <div class="skill-tag">Scikit-learn</div>
+          <div class="skill-tag">Pandas / NumPy</div>
+          <div class="skill-tag">GCP Vertex AI / Cloud Run</div>
+          <div class="skill-tag">AWS ECS</div>
+          <div class="skill-tag">FastAPI</div>
+          <div class="skill-tag">Docker</div>
+          <div class="skill-tag">GitHub Actions / pytest</div>
+          <div class="skill-tag">Java</div>
+          <div class="skill-tag">Spring Boot</div>
+          <div class="skill-tag">JavaScript / TypeScript</div>
+          <div class="skill-tag">React / React Native</div>
+          <div class="skill-tag">Angular</div>
+          <div class="skill-tag">PostgreSQL / MySQL</div>
         </div>
       </section>
 
-      <!-- WORK EXPERIENCE -->
+      <!-- WORK EXPERIENCE (grouped by company, LinkedIn-style) -->
       <section id="experience">
         <div class="timeline-heading">
           <h2>Work <span>Experience</span></h2>
         </div>
 
-        <div class="timeline">
-          <!-- 1. Climate ETC / Tech Lead -->
-          <div class="timeline-item">
-            <div class="timeline-card">
-              <h3>Tech Lead</h3>
-              <div class="timeline-company">
-                📌 Climate ETC Technology Services Pvt Ltd, Chennai
+        <div class="exp-list">
+          <!-- Climate ETC: multiple roles -->
+          <article class="exp-company multi">
+            <div class="exp-header">
+              <div class="exp-logo" aria-hidden="true">CE</div>
+              <div>
+                <h3>Climate ETC Technology Services Pvt Ltd</h3>
+                <div class="exp-meta">
+                  <span class="exp-duration" data-start="2023-04" data-end="present"></span>
+                </div>
+                <div class="exp-meta">Chennai, India</div>
               </div>
-              <div class="timeline-date">📅 April 2023 — Present</div>
-              <ul>
-                <li>
-                  Leading development of the Trane Technician Mobile App —
-                  simplifying HVAC installation, commissioning, and service.
-                </li>
-                <li>
-                  Developed and led React Native mobile app features; integrated
-                  BLE and RESTful APIs for device and cloud interaction.
-                </li>
-                <li>
-                  Built an intelligent chatbot with <strong>RAG</strong>
-                  (Retrieval-Augmented Generation) using
-                  <strong>AWS Bedrock</strong>, LangChain, and vector
-                  stores to enable contextual technician support and knowledge
-                  retrieval.
-                </li>
-                <li>
-                  Managed web application modules and ensured cross-platform
-                  consistency.
-                </li>
-                <li>
-                  Implemented unit tests and conducted code reviews to ensure
-                  service reliability and code quality.
-                </li>
-              </ul>
             </div>
-          </div>
+            <ol class="exp-roles">
+              <li class="exp-role">
+                <h4>Technical Manager <span class="exp-badge">Promoted</span></h4>
+                <div class="exp-meta">
+                  <time datetime="2026-10">Oct 2026</time> – Present ·
+                  <span class="exp-duration" data-start="2026-10" data-end="present"></span>
+                </div>
+              </li>
+              <li class="exp-role">
+                <h4>Tech Lead</h4>
+                <div class="exp-meta">
+                  <time datetime="2023-04">Apr 2023</time> –
+                  <time datetime="2026-09">Sep 2026</time> ·
+                  <span class="exp-duration" data-start="2023-04" data-end="2026-09"></span>
+                </div>
+                <ul>
+                  <li>
+                    Led development of the Trane Technician Mobile App —
+                    simplifying HVAC installation, commissioning, and service.
+                  </li>
+                  <li>
+                    Built a <strong>RAG</strong> (Retrieval-Augmented
+                    Generation) assistant on <strong>AWS Bedrock</strong> with
+                    LangChain and vector stores over HVAC product and service
+                    knowledge, giving field technicians contextual answers
+                    during installation, commissioning, and troubleshooting.
+                  </li>
+                  <li>
+                    Developed and led React Native mobile app features;
+                    integrated BLE and RESTful APIs for device and cloud
+                    interaction.
+                  </li>
+                  <li>
+                    Managed web application modules and ensured cross-platform
+                    consistency.
+                  </li>
+                  <li>
+                    Implemented unit tests and conducted code reviews to ensure
+                    service reliability and code quality.
+                  </li>
+                </ul>
+                <div class="exp-skills">
+                  <strong>Skills:</strong> AWS Bedrock · RAG · LangChain ·
+                  React Native · BLE · REST APIs
+                </div>
+              </li>
+            </ol>
+          </article>
 
-          <!-- 2. Nagarro / Staff Engineer -->
-          <div class="timeline-item right">
-            <div class="timeline-card">
-              <h3>Staff Engineer</h3>
-              <div class="timeline-company">📌 Nagarro, Bangalore</div>
-              <div class="timeline-date">📅 November 2021 — March 2023</div>
-              <ul>
-                <li>
-                  Built the Quara Pay core loan processing system and admin
-                  portal for a leading Saudi Arabian loan provider.
-                </li>
-                <li>
-                  Engineered automated customer eligibility-check workflows and
-                  loan-tracking dashboards.
-                </li>
-                <li>
-                  Implemented controllers, services and DAO layers using Spring
-                  Boot, Microservices, and PostgreSQL.
-                </li>
-                <li>
-                  Involved in DB design, performance optimisation, and unit test
-                  case implementation.
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- 3. ASG Technologies / DV2 -->
-          <div class="timeline-item">
-            <div class="timeline-card">
-              <h3>Developer (DV2)</h3>
-              <div class="timeline-company">📌 ASG Technologies, Chennai</div>
-              <div class="timeline-date">📅 July 2019 — November 2021</div>
-              <ul>
-                <li>
-                  Built the Mobius Data Miner — a web tool to extract and
-                  archive semi-structured data (PDF, AFP, Xerox, PCL).
-                </li>
-                <li>
-                  Designed REST APIs and implemented code using Angular 10 and
-                  NGX-Charts for data visualisation.
-                </li>
-                <li>
-                  Implemented UI components, controllers, services and DAO
-                  layers; performed code reviews.
-                </li>
-                <li>Won the <strong>Best Team Player</strong> award (2020).</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- 4. Wipro Technologies / Tech Lead -->
-          <div class="timeline-item right">
-            <div class="timeline-card">
-              <h3>Tech Lead</h3>
-              <div class="timeline-company">📌 Wipro Technologies, Chennai</div>
-              <div class="timeline-date">📅 February 2018 — June 2019</div>
-              <ul>
-                <li>
-                  Led development on the Mobius Data Miner project (Jan 2018 –
-                  Jul 2019 period).
-                </li>
-                <li>
-                  Involved in requirement analysis, REST API design, and
-                  full-stack implementation using Spring Boot and Angular.
-                </li>
-                <li>
-                  Participated in design reviews, high-level UI planning, and
-                  Agile (Scrum) sprints.
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- 5. RAVSoft / Senior Software Engineer -->
-          <div class="timeline-item">
-            <div class="timeline-card">
-              <h3>Senior Software Engineer</h3>
-              <div class="timeline-company">
-                📌 RAVSoft Solutions Pvt Ltd, Chennai
+          <!-- Nagarro -->
+          <article class="exp-company single">
+            <div class="exp-header">
+              <div class="exp-logo" aria-hidden="true">N</div>
+              <div>
+                <h3>Staff Engineer</h3>
+                <div class="exp-sub">Nagarro</div>
+                <div class="exp-meta">
+                  <time datetime="2021-11">Nov 2021</time> –
+                  <time datetime="2023-03">Mar 2023</time> ·
+                  <span class="exp-duration" data-start="2021-11" data-end="2023-03"></span>
+                </div>
+                <div class="exp-meta">Bangalore, India</div>
               </div>
-              <div class="timeline-date">📅 January 2013 — January 2018</div>
-              <ul>
-                <li>
-                  Worked on MedAptus Assign — an intelligent, rules-based
-                  patient assignment system for healthcare hospitalists.
-                </li>
-                <li>
-                  Worked on Merge PACS — a standards-based medical image
-                  management platform (PACS) with multiple viewer components.
-                </li>
-                <li>
-                  Full-stack development using Java, Spring MVC, Hibernate, JSP,
-                  and Oracle/SQL Server databases.
-                </li>
-                <li>
-                  Achieved the <strong>E-Sprit Award</strong> from RAVSoft in
-                  2014.
-                </li>
-              </ul>
             </div>
-          </div>
+            <ol class="exp-roles">
+              <li class="exp-role">
+                <ul>
+                  <li>
+                    Built the Quara Pay core loan processing system and admin
+                    portal for a leading Saudi Arabian loan provider.
+                  </li>
+                  <li>
+                    Engineered automated customer eligibility-check workflows
+                    and loan-tracking dashboards.
+                  </li>
+                  <li>
+                    Implemented controllers, services and DAO layers using
+                    Spring Boot, Microservices, and PostgreSQL.
+                  </li>
+                  <li>
+                    Involved in DB design, performance optimisation, and unit
+                    test case implementation.
+                  </li>
+                </ul>
+                <div class="exp-skills">
+                  <strong>Skills:</strong> Spring Boot · Microservices ·
+                  PostgreSQL
+                </div>
+              </li>
+            </ol>
+          </article>
+
+          <!-- ASG Technologies -->
+          <article class="exp-company single">
+            <div class="exp-header">
+              <div class="exp-logo" aria-hidden="true">ASG</div>
+              <div>
+                <h3>Developer (DV2)</h3>
+                <div class="exp-sub">ASG Technologies</div>
+                <div class="exp-meta">
+                  <time datetime="2019-07">Jul 2019</time> –
+                  <time datetime="2021-11">Nov 2021</time> ·
+                  <span class="exp-duration" data-start="2019-07" data-end="2021-11"></span>
+                </div>
+                <div class="exp-meta">Chennai, India</div>
+              </div>
+            </div>
+            <ol class="exp-roles">
+              <li class="exp-role">
+                <ul>
+                  <li>
+                    Built the Mobius Data Miner — a web tool to extract and
+                    archive semi-structured data (PDF, AFP, Xerox, PCL).
+                  </li>
+                  <li>
+                    Designed REST APIs and implemented code using Angular 10
+                    and NGX-Charts for data visualisation.
+                  </li>
+                  <li>
+                    Implemented UI components, controllers, services and DAO
+                    layers; performed code reviews.
+                  </li>
+                  <li>Won the <strong>Best Team Player</strong> award (2020).</li>
+                </ul>
+                <div class="exp-skills">
+                  <strong>Skills:</strong> Angular · NGX-Charts · REST APIs ·
+                  Java
+                </div>
+              </li>
+            </ol>
+          </article>
+
+          <!-- Wipro Technologies -->
+          <article class="exp-company single">
+            <div class="exp-header">
+              <div class="exp-logo" aria-hidden="true">W</div>
+              <div>
+                <h3>Tech Lead</h3>
+                <div class="exp-sub">Wipro Technologies</div>
+                <div class="exp-meta">
+                  <time datetime="2018-02">Feb 2018</time> –
+                  <time datetime="2019-06">Jun 2019</time> ·
+                  <span class="exp-duration" data-start="2018-02" data-end="2019-06"></span>
+                </div>
+                <div class="exp-meta">Chennai, India</div>
+              </div>
+            </div>
+            <ol class="exp-roles">
+              <li class="exp-role">
+                <ul>
+                  <li>Led development on the Mobius Data Miner project.</li>
+                  <li>
+                    Involved in requirement analysis, REST API design, and
+                    full-stack implementation using Spring Boot and Angular.
+                  </li>
+                  <li>
+                    Participated in design reviews, high-level UI planning, and
+                    Agile (Scrum) sprints.
+                  </li>
+                </ul>
+                <div class="exp-skills">
+                  <strong>Skills:</strong> Spring Boot · Angular · Agile /
+                  Scrum
+                </div>
+              </li>
+            </ol>
+          </article>
+
+          <!-- RAVSoft Solutions -->
+          <article class="exp-company single">
+            <div class="exp-header">
+              <div class="exp-logo" aria-hidden="true">RS</div>
+              <div>
+                <h3>Senior Software Engineer</h3>
+                <div class="exp-sub">RAVSoft Solutions Pvt Ltd</div>
+                <div class="exp-meta">
+                  <time datetime="2013-01">Jan 2013</time> –
+                  <time datetime="2018-01">Jan 2018</time> ·
+                  <span class="exp-duration" data-start="2013-01" data-end="2018-01"></span>
+                </div>
+                <div class="exp-meta">Chennai, India</div>
+              </div>
+            </div>
+            <ol class="exp-roles">
+              <li class="exp-role">
+                <ul>
+                  <li>
+                    Worked on MedAptus Assign — an intelligent, rules-based
+                    patient assignment system for healthcare hospitalists.
+                  </li>
+                  <li>
+                    Worked on Merge PACS — a standards-based medical image
+                    management platform (PACS) with multiple viewer components.
+                  </li>
+                  <li>
+                    Full-stack development using Java, Spring MVC, Hibernate,
+                    JSP, and Oracle/SQL Server databases.
+                  </li>
+                  <li>
+                    Achieved the <strong>E-Sprit Award</strong> from RAVSoft in
+                    2014.
+                  </li>
+                </ul>
+                <div class="exp-skills">
+                  <strong>Skills:</strong> Java · Spring MVC · Hibernate ·
+                  Oracle / SQL Server
+                </div>
+              </li>
+            </ol>
+          </article>
         </div>
       </section>
 
@@ -740,20 +873,54 @@
       <section id="projects">
         <h2>Featured Constellations</h2>
         <div class="grid">
+          <!-- Research -->
+          <div class="card">
+            <h3>Hybrid Multi-Agent Trading System</h3>
+            <div class="card-meta">
+              Academic Research · SRM University · 2024 – 2026
+            </div>
+            <p>
+              Research question: can a team of specialised agents apply a
+              momentum strategy with better risk control on NSE equities?
+              Built a multi-agent pipeline in <strong>Python, PyTorch,
+              Pandas,</strong> and <strong>Scikit-learn</strong> that
+              implements the Minervini momentum strategy with agent-based risk
+              allocation via <strong>LangChain</strong>, then evaluated it by
+              backtesting on 5 years of OHLC data. Published in the IEEE AEEE
+              Conference.
+              <a href="https://github.com/sudhakarbadugu/trading-rag-mentor" target="_blank" rel="noopener noreferrer">GitHub Repo →</a>
+              <a href="https://ieeexplore.ieee.org/document/11518584" target="_blank" rel="noopener noreferrer">Publication →</a>
+            </p>
+          </div>
+          <!-- Hobby Project -->
+          <div class="card">
+            <h3>Luminary Leaders</h3>
+            <div class="card-meta">
+              Hobby Project · OpenClaw Agent · 2026
+            </div>
+            <p>
+              A self-motivation app powered by an AI agent built with OpenClaw.
+              Provides personalized coaching and goal-tracking via an
+              agentic interface. Showcases end-to-end AI product development
+              from prompt engineering to deployment.
+              <a href="https://luminary-leaders.netlify.app/" target="_blank" rel="noopener noreferrer">Live App →</a>
+            </p>
+          </div>
+
           <!-- Project 5 -->
           <div class="card">
             <h3>Trane Technician Mobile App</h3>
             <div class="card-meta">
-              Tech Lead · Climate ETC · Apr 2023 – Present
+              Tech Lead → Technical Manager · Climate ETC · Apr 2023 – Present
             </div>
             <p>
-              Simplifies HVAC system installation, commissioning and service by
-              integrating with Link Systems, Zoning, and Relay Panels. Provides
-              step-by-step setup guidance, real-time alerts, and Dealer Remote
-              Configuration (DRC). Also built an internal AI chatbot with
-              <strong>RAG</strong> using <strong>AWS Bedrock</strong>
-              and LangChain for contextual technician support and knowledge
-              retrieval.
+              Industrial AI for HVAC field service: a <strong>RAG</strong>
+              assistant on <strong>AWS Bedrock</strong> and LangChain gives
+              technicians contextual answers from product and service
+              knowledge. The app itself simplifies installation, commissioning,
+              and service by integrating with Link Systems, Zoning, and Relay
+              Panels, with step-by-step setup guidance, real-time alerts, and
+              Dealer Remote Configuration (DRC).
             </p>
           </div>
 
@@ -813,38 +980,6 @@
             </p>
           </div>
 
-          <!-- Hobby Project -->
-          <div class="card">
-            <h3>Luminary Leaders</h3>
-            <div class="card-meta">
-              Hobby Project · OpenClaw Agent · 2026
-            </div>
-            <p>
-              A self-motivation app powered by an AI agent built with OpenClaw.
-              Provides personalized coaching and goal-tracking via an
-              agentic interface. Showcases end-to-end AI product development
-              from prompt engineering to deployment.
-              <a href="https://luminary-leaders.netlify.app/" target="_blank" rel="noopener noreferrer">Live App →</a>
-            </p>
-          </div>
-
-          <!-- Research -->
-          <div class="card">
-            <h3>Hybrid Multi-Agent Trading System</h3>
-            <div class="card-meta">
-              Academic Research · SRM University · 2024 – 2026
-            </div>
-            <p>
-              Built a multi-agent trading pipeline for NSE equities using
-              <strong>Python, PyTorch, Pandas,</strong> and
-              <strong>Scikit-learn</strong>. Implements the Minervini
-              momentum strategy with agent-based risk allocation via
-              <strong>LangChain</strong>. Backtested on 5 years of
-              OHLC data. Published in the IEEE AEEE Conference.
-              <a href="https://github.com/sudhakarbadugu/trading-rag-mentor" target="_blank" rel="noopener noreferrer">GitHub Repo →</a>
-              <a href="https://ieeexplore.ieee.org/document/11518584" target="_blank" rel="noopener noreferrer">Publication →</a>
-            </p>
-          </div>
         </div>
       </section>
 
@@ -938,22 +1073,44 @@
           years + "+ years of IT experience";
       })();
 
-      // Animate skill bars when the about section is visible
-      const bars = document.querySelectorAll(".skill-bar-fill");
-      const barObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const target = entry.target;
-              target.style.width = target.dataset.width + "%";
-              barObserver.unobserve(target);
-            }
-          });
-        },
-        { threshold: 0.2 },
-      );
+      // Experience: LinkedIn-style durations ("2 yrs 7 mos"), inclusive of both months
+      (function () {
+        const now = new Date();
+        const parse = (v) =>
+          v === "present"
+            ? { y: now.getFullYear(), m: now.getMonth() + 1 }
+            : { y: +v.slice(0, 4), m: +v.slice(5, 7) };
+        document.querySelectorAll(".exp-duration").forEach((el) => {
+          const s = parse(el.dataset.start);
+          const e = parse(el.dataset.end);
+          const total = (e.y - s.y) * 12 + (e.m - s.m) + 1;
+          const y = Math.floor(total / 12);
+          const m = total % 12;
+          const parts = [];
+          if (y) parts.push(y + (y === 1 ? " yr" : " yrs"));
+          if (m) parts.push(m + (m === 1 ? " mo" : " mos"));
+          el.textContent = parts.join(" ");
+        });
+      })();
 
-      bars.forEach((bar) => barObserver.observe(bar));
+      // Experience: collapse bullet lists longer than 4 items to 3, with a toggle
+      document.querySelectorAll(".exp-role").forEach((role) => {
+        const list = role.querySelector("ul");
+        if (!list || list.children.length <= 4) return;
+        role.classList.add("collapsed");
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "exp-toggle";
+        btn.setAttribute("aria-expanded", "false");
+        btn.textContent = "Show more";
+        btn.addEventListener("click", () => {
+          const open = role.classList.toggle("collapsed") === false;
+          btn.setAttribute("aria-expanded", String(open));
+          btn.textContent = open ? "Show less" : "Show more";
+        });
+        list.after(btn);
+      });
+
     </script>
   </body>
 </html>
