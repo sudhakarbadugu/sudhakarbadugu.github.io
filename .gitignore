@@ -1,0 +1,6 @@
+# Resume source files and drafts stay local; only the published PDF is tracked
+*.docx
+*.pdf
+!Sudhakar_Badugu_Resume_2026.pdf
+~$*
+.DS_Store
